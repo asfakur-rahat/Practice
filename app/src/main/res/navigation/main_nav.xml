@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/registerBusinessFragment">
+
+    <fragment
+        android:id="@+id/registerBusinessFragment"
+        android:name="com.ar.practice.presentation.register_business.RegisterBusinessFragment"
+        android:label="fragment_register_business"
+        tools:layout="@layout/fragment_register_business" />
+</navigation>
