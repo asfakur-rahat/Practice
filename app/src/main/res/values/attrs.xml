@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/attrs.xml -->
+<resources>
+    <declare-styleable name="CustomInputLayout">
+        <attr name="customLabel" format="string" />
+        <attr name="customHint" format="string" />
+        <attr name="mainText" format="string"/>
+        <attr name="supportingIcon" format="reference" />
+        <attr name="supportingText" format="string" />
+        <attr name="trailingIcon" format="reference" />
+    </declare-styleable>
+</resources>

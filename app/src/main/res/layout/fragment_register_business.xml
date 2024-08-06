@@ -23,14 +23,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <include
+            <com.ar.practice.utils.custom_ui.CustomInputLayout
                 android:id="@+id/employee_number"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                layout="@layout/layout_custom_selectable"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:customLabel="Number of employees"
+                app:trailingIcon="@drawable/ic_drop"
+                app:customHint="Select One"/>
             <include
                 android:id="@+id/international_activity"
                 android:layout_width="0dp"

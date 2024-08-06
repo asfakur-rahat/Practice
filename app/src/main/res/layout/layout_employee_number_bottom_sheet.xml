@@ -35,11 +35,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
+                android:inputType="number"
                 app:layout_constraintStart_toEndOf="@id/search_icon"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="Search Country"
+                android:hint="@string/search_employee_number"
                 android:textSize="@dimen/_13ssp"
                 android:textColor="@color/black"
                 android:background="@null"/>
@@ -56,52 +57,19 @@
         app:layout_constraintBottom_toBottomOf="@id/cv_input"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/selected_tag"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="Selected countries"
-        style="@style/inter_medium_14"
-        android:layout_marginTop="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@id/cv_input"
-        app:layout_constraintStart_toStartOf="@id/cv_input"
-        app:layout_constraintEnd_toEndOf="@id/cv_input"/>
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:dividerThickness="@dimen/_1sdp"
-        android:layout_marginTop="@dimen/_2sdp"
-        app:dividerColor="@color/border_color"
-        app:layout_constraintTop_toBottomOf="@id/selected_tag"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_selected_items"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_basic_selectable"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/divider1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dividerThickness="@dimen/_1sdp"
         app:dividerColor="@color/border_color"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/rv_selected_items"/>
+        android:layout_marginTop="@dimen/_13sdp"
+        app:layout_constraintTop_toBottomOf="@id/cv_input"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollable"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_460sdp"
+        android:layout_height="@dimen/_330sdp"
         android:layout_marginTop="@dimen/_5sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,12 +78,13 @@
         app:layout_constraintVertical_bias="0">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/ash">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_selectable_items"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_country"
+                tools:listitem="@layout/custom_employee_range"
                 tools:itemCount="7"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -124,15 +93,4 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <include
-        android:id="@+id/bottom_button"
-        layout="@layout/layout_bottom_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/scrollable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

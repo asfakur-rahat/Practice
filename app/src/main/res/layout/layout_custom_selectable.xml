@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <com.google.android.material.card.MaterialCardView
@@ -38,6 +39,19 @@
                 tools:text="Select all that applies"
                 style="@style/inter_regular_17"
                 android:textColor="@color/light_grey"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/tag_label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tag_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1-100"
+                style="@style/inter_regular_17"
+                android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 app:layout_constraintTop_toBottomOf="@id/tag_label"
@@ -93,3 +107,4 @@
         app:layout_constraintEnd_toEndOf="@id/cv_input"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

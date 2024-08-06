@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.R
 import com.ar.practice.adapter.business.SelectedCountryAdapter
 import com.ar.practice.bottomsheets.CountrySelectionBottomSheet
+import com.ar.practice.bottomsheets.EmployeeNumberSelectionBottomSheet
 import com.ar.practice.data.local.demo.DemoData
 import com.ar.practice.data.model.Country
 import com.ar.practice.databinding.FragmentRegisterBusinessBinding
@@ -58,9 +59,8 @@ class RegisterBusinessFragment : Fragment() {
         binding.actionBar.tvTitle.text = "Business activities"
         binding.actionBar.tvSubtitle.text = "Please tell us a bit more about your business activities"
 
-        binding.employeeNumber.tagLabel.text = "Employee number"
-        binding.employeeNumber.hint.text = "Select one"
-        binding.employeeNumber.ivInfo.setVisibility(false)
+        binding.employeeNumber.customLabel = "Employee number"
+        binding.employeeNumber.customHint = "Select one"
 
         binding.internationalActivity.tagLabel.text = "International activity"
         binding.internationalActivity.tvInfo.text = "If you sell products and services, or source any supplies from outside your trading country, please select “Yes”"
@@ -81,6 +81,16 @@ class RegisterBusinessFragment : Fragment() {
         binding.internationalCountries.root.setOnClickListener {
             openBottomSheet()
         }
+        binding.employeeNumber.setOnClickListener {
+            openEmployeeBottomSheet()
+        }
+    }
+
+    private fun openEmployeeBottomSheet() {
+        val employeeSheet = EmployeeNumberSelectionBottomSheet(requireContext()){ range ->
+            binding.employeeNumber.mainText = range.range
+        }
+        employeeSheet.show()
     }
 
     private fun openBottomSheet() {
@@ -92,6 +102,7 @@ class RegisterBusinessFragment : Fragment() {
             },
             countryList = allCountry
         )
+        countrySheet.setCancelable(false)
         countrySheet.show()
     }
 

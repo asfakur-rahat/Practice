@@ -2,7 +2,9 @@ package com.ar.practice.bottomsheets
 
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.adapter.business.CountryListAdapter
@@ -36,10 +38,11 @@ class CountrySelectionBottomSheet(
 
     private fun initBehavior() {
         val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+
         bottomSheet?.let {
             val behavior = BottomSheetBehavior.from(it)
             behavior.isHideable = false
-            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
 
     }
@@ -95,17 +98,21 @@ class CountrySelectionBottomSheet(
         countryList = countrys
         binding.rvSelectableItems.layoutManager = LinearLayoutManager(context)
         binding.rvSelectableItems.adapter = countryListAdapter
+        submitList(countrys)
+    }
+
+    private fun submitList(countrys: List<Country>) {
         countryListAdapter.submitList(countrys)
     }
 
 
     private fun initView() {
         binding.etSearch.doAfterTextChanged {
-            if (it.toString().isNotEmpty()) {
-                binding.tagHint.text = it.toString()
-            } else {
-                binding.tagHint.text = "Search country"
+            val query = it.toString()
+            val newList = countryList.filter {
+                it.name.contains(query, ignoreCase = true)
             }
+            submitList(newList)
         }
         binding.bottomButton.tvContinue.text = "Continue"
         binding.selectedTag.text = "Selected countries"
