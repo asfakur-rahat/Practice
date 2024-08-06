@@ -14,38 +14,70 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class CountrySelectionBottomSheet(
     context: Context,
-    private val onCountrySelected: (Country) -> Unit,
-    private val onCancel: () -> Unit,
-    private val onComplete: (List<Country>) -> Unit,
+    private val onComplete: (List<Country>, List<Country>) -> Unit,
     private var countryList: List<Country>
 ) : BottomSheetDialog(context) {
 
     private lateinit var binding: LayoutSelectableBottomSheetBinding
     private lateinit var selectedAdapter: SelectedCountryAdapter
     private lateinit var countryListAdapter: CountryListAdapter
+    private var selectedCountry = mutableListOf<Country>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LayoutSelectableBottomSheetBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        filterItems()
         initView()
+        initListener()
         initItems()
+    }
+
+    private fun filterItems() {
+        val newList = countryList.filter { it.isSelected }
+        selectedCountry = newList.toMutableList()
+        upDateSelected(newList.toMutableList())
+    }
+
+    private fun initListener() {
+        binding.bottomButton.btnContinue.setOnClickListener {
+            onComplete(countryList, selectedCountry)
+            dismiss()
+        }
+        binding.btnCancel.setOnClickListener {
+            dismiss()
+        }
     }
 
 
     private fun initItems() {
-        countryListAdapter = CountryListAdapter({
+        countryListAdapter = CountryListAdapter(onAdd = {
             val newList = countryList.toMutableList()
             newList[it.id-1] = Country(it.id, it.flag,it.name,isSelected = true)
             setRecyclerView(newList)
-            println(newList)
-        }, {
-            val newList = countryList.toMutableList()
-            newList[it.id-1] = Country(it.id, it.flag,it.name,isSelected = false)
-            setRecyclerView(newList)
-            println(newList)
+            selectedCountry.add(it)
+            upDateSelected(selectedCountry)
+        }, onRemove =  {
+
         })
         setRecyclerView(countryList)
+    }
+
+    private fun updateList(item: Country) {
+        val newList = countryList.toMutableList()
+        newList[item.id-1] = Country(item.id, item.flag,item.name,isSelected = false)
+        setRecyclerView(newList)
+    }
+
+    private fun upDateSelected(country: MutableList<Country>) {
+        binding.rvSelectedItems.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        selectedAdapter = SelectedCountryAdapter {
+            selectedCountry.remove(it)
+            updateList(it)
+            upDateSelected(selectedCountry)
+        }
+        binding.rvSelectedItems.adapter = selectedAdapter
+        selectedAdapter.submitList(country)
     }
 
     private fun setRecyclerView(countrys: List<Country>) {
