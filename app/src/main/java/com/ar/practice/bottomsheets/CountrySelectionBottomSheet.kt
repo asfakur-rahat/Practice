@@ -29,8 +29,19 @@ class CountrySelectionBottomSheet(
         setContentView(binding.root)
         filterItems()
         initView()
+        initBehavior()
         initListener()
         initItems()
+    }
+
+    private fun initBehavior() {
+        val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+        bottomSheet?.let {
+            val behavior = BottomSheetBehavior.from(it)
+            behavior.isHideable = false
+            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
     }
 
     private fun filterItems() {

@@ -23,7 +23,6 @@ import com.google.android.material.textview.MaterialTextView
 class RegisterBusinessFragment : Fragment() {
 
     private val viewModel: RegisterBusinessViewModel by viewModels()
-    private var bottomSheetBehavior: BottomSheetBehavior<*>? = null
     private lateinit var binding: FragmentRegisterBusinessBinding
     private lateinit var adapter: SelectedCountryAdapter
 
@@ -55,7 +54,7 @@ class RegisterBusinessFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun initView() {
+    private fun initView(){
         binding.actionBar.tvTitle.text = "Business activities"
         binding.actionBar.tvSubtitle.text = "Please tell us a bit more about your business activities"
 
