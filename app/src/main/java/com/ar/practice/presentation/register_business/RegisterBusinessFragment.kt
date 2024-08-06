@@ -13,11 +13,14 @@ import com.ar.practice.R
 import com.ar.practice.bottomsheets.CountrySelectionBottomSheet
 import com.ar.practice.data.local.demo.DemoData
 import com.ar.practice.databinding.FragmentRegisterBusinessBinding
+import com.ar.practice.utils.setVisibility
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textview.MaterialTextView
 
 class RegisterBusinessFragment : Fragment() {
 
     private val viewModel: RegisterBusinessViewModel by viewModels()
+    private var bottomSheetBehavior: BottomSheetBehavior<*>? = null
     private lateinit var binding: FragmentRegisterBusinessBinding
 
     private var allCountry = DemoData.countries
@@ -43,7 +46,7 @@ class RegisterBusinessFragment : Fragment() {
 
         binding.employeeNumber.tagLabel.text = "Employee number"
         binding.employeeNumber.hint.text = "Select one"
-        binding.employeeNumber.ivInfo.visibility = View.GONE
+        binding.employeeNumber.ivInfo.setVisibility(false)
 
         binding.internationalActivity.tagLabel.text = "International activity"
         binding.internationalActivity.tvInfo.text = "If you sell products and services, or source any supplies from outside your trading country, please select “Yes”"

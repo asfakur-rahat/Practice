@@ -19,9 +19,9 @@ class CountryListAdapter(
 
     companion object {
         val DiffChecker = object : DiffUtil.ItemCallback<Country>(){
-            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem.id == newItem.id
         }
     }
 
@@ -32,18 +32,16 @@ class CountryListAdapter(
     ): ViewHolder(binding.root){
         @SuppressLint("ResourceAsColor")
         fun bind(country: Country){
-            println("inside Bind")
+
             binding.countryFlag.setImageResource(country.flag)
             binding.countryName.text = country.name
             if (country.isSelected){
                 binding.isSelected.visibility = View.VISIBLE
-                binding.cvCountry.setCardBackgroundColor(ash)
                 binding.root.setOnClickListener {
                     onRemove(country)
                 }
             }else{
                 binding.isSelected.visibility = View.GONE
-                binding.cvCountry.setCardBackgroundColor(white)
                 binding.root.setOnClickListener {
                     onAdd(country)
                 }
@@ -58,5 +56,6 @@ class CountryListAdapter(
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.isSelected = getItem(position).isSelected
     }
 }

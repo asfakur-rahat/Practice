@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Practice</string>
     <string name="cancle">Cancle</string>
+    <string name="cancel">Cancel</string>
 </resources>

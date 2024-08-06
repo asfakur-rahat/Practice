@@ -1,14 +1,15 @@
 package com.ar.practice.bottomsheets
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.adapter.business.CountryListAdapter
 import com.ar.practice.adapter.business.SelectedCountryAdapter
 import com.ar.practice.data.model.Country
 import com.ar.practice.databinding.LayoutSelectableBottomSheetBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class CountrySelectionBottomSheet(
@@ -17,7 +18,8 @@ class CountrySelectionBottomSheet(
     private val onCancel: () -> Unit,
     private val onComplete: (List<Country>) -> Unit,
     private var countryList: List<Country>
-): BottomSheetDialog(context) {
+) : BottomSheetDialog(context) {
+
     private lateinit var binding: LayoutSelectableBottomSheetBinding
     private lateinit var selectedAdapter: SelectedCountryAdapter
     private lateinit var countryListAdapter: CountryListAdapter
@@ -30,31 +32,39 @@ class CountrySelectionBottomSheet(
         initItems()
     }
 
+
     private fun initItems() {
         countryListAdapter = CountryListAdapter({
             val newList = countryList.toMutableList()
-            newList[it.id] = it.copy(isSelected = true)
-            countryList = newList
-            countryListAdapter.submitList(newList)
-        },{})
-        binding.rvSelectableItems.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.rvSelectableItems.adapter = countryListAdapter
-        countryListAdapter.submitList(countryList)
+            newList[it.id-1] = Country(it.id, it.flag,it.name,isSelected = true)
+            setRecyclerView(newList)
+            println(newList)
+        }, {
+            val newList = countryList.toMutableList()
+            newList[it.id-1] = Country(it.id, it.flag,it.name,isSelected = false)
+            setRecyclerView(newList)
+            println(newList)
+        })
+        setRecyclerView(countryList)
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun initView() {
-        binding.tagHint.text = "Search country"
-        binding.selectedTag.text = "Selected Countries"
-        binding.bottomButton.tvContinue.text = "Continue"
+    private fun setRecyclerView(countrys: List<Country>) {
+        countryList = countrys
+        binding.rvSelectableItems.layoutManager = LinearLayoutManager(context)
+        binding.rvSelectableItems.adapter = countryListAdapter
+        countryListAdapter.submitList(countrys)
+    }
 
+
+    private fun initView() {
         binding.etSearch.doAfterTextChanged {
-            if (it.toString().isNotEmpty()){
+            if (it.toString().isNotEmpty()) {
                 binding.tagHint.text = it.toString()
-            }else{
+            } else {
                 binding.tagHint.text = "Search country"
             }
-
         }
+        binding.bottomButton.tvContinue.text = "Continue"
+        binding.selectedTag.text = "Selected countries"
     }
 }
