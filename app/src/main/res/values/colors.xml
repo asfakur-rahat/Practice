@@ -8,4 +8,6 @@
     <color name="ash">#EDEFF2</color>
     <color name="border_color">#B8BBBE</color>
     <color name="grey">#E0E3E7</color>
+    <color name="green">#56BB6F</color>
+    <color name="light_purple">#292B3F</color>
 </resources>

@@ -9,5 +9,14 @@
         android:id="@+id/registerBusinessFragment"
         android:name="com.ar.practice.presentation.register_business.RegisterBusinessFragment"
         android:label="fragment_register_business"
-        tools:layout="@layout/fragment_register_business" />
+        tools:layout="@layout/fragment_register_business" >
+        <action
+            android:id="@+id/action_registerBusinessFragment_to_transactionHistoryFragment"
+            app:destination="@id/transactionHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionHistoryFragment"
+        android:name="com.ar.practice.presentation.transaction.TransactionHistoryFragment"
+        android:label="fragment_transaction_history"
+        tools:layout="@layout/fragment_transaction_history" />
 </navigation>

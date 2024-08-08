@@ -13,6 +13,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.PopupWindow
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.R
 import com.ar.practice.adapter.business.SelectedCountryAdapter
@@ -97,6 +98,10 @@ class RegisterBusinessFragment : Fragment() {
         binding.internationalActivity.customSpinner.setOnItemClickListener { parent, _, position, _ ->
             val selectedItem = parent.getItemAtPosition(position) as String
             binding.internationalCountries.root.setVisibility(selectedItem == "Yes")
+        }
+
+        binding.bottomButton.btnContinue.setOnClickListener {
+            findNavController().navigate(R.id.action_registerBusinessFragment_to_transactionHistoryFragment)
         }
     }
 
