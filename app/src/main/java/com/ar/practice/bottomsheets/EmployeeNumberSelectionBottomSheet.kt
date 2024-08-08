@@ -3,6 +3,7 @@ package com.ar.practice.bottomsheets
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.adapter.business.CountryListAdapter
@@ -50,6 +51,7 @@ class EmployeeNumberSelectionBottomSheet(
         val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
 
         bottomSheet?.let {
+            bottomSheet.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
             val behavior = BottomSheetBehavior.from(it)
             behavior.isHideable = false
             behavior.state = BottomSheetBehavior.STATE_EXPANDED

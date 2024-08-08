@@ -1,9 +1,12 @@
 package com.ar.practice.bottomsheets
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,11 +43,12 @@ class CountrySelectionBottomSheet(
         val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
 
         bottomSheet?.let {
+            bottomSheet.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
             val behavior = BottomSheetBehavior.from(it)
             behavior.isHideable = false
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            //behavior.setDraggableOnNestedScroll(true)
         }
-
     }
 
     private fun filterItems() {

@@ -46,6 +46,24 @@ object DemoData {
             ic_flag_usa,
             "United States of America",
             false
+        ),
+        Country(
+            8,
+            ic_flag_romanian_leu,
+            "Romanian Leu",
+            false
+        ),
+        Country(
+            9,
+            ic_flag_uk,
+            "United Kingdom",
+            false
+        ),
+        Country(
+            10,
+            ic_flag_usa,
+            "United States of America",
+            false
         )
     )
 }

@@ -1,6 +1,8 @@
 package com.ar.practice.presentation.register_business
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.PopupWindow
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.R
 import com.ar.practice.adapter.business.SelectedCountryAdapter
@@ -17,6 +21,7 @@ import com.ar.practice.bottomsheets.EmployeeNumberSelectionBottomSheet
 import com.ar.practice.data.local.demo.DemoData
 import com.ar.practice.data.model.Country
 import com.ar.practice.databinding.FragmentRegisterBusinessBinding
+import com.ar.practice.utils.custom_ui.CustomAdapter
 import com.ar.practice.utils.setVisibility
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textview.MaterialTextView
@@ -62,7 +67,7 @@ class RegisterBusinessFragment : Fragment() {
         binding.employeeNumber.customLabel = "Employee number"
         binding.employeeNumber.customHint = "Select one"
 
-        binding.internationalActivity.tagLabel.text = "International activity"
+        binding.internationalActivity.dropdownMenu.hint = "International activity"
         binding.internationalActivity.tvInfo.text = "If you sell products and services, or source any supplies from outside your trading country, please select “Yes”"
 
         binding.internationalCountries.tagLabel.text = "Active countries"
@@ -72,9 +77,13 @@ class RegisterBusinessFragment : Fragment() {
 
         binding.bottomButton.tvContinue.text = "Continue"
         binding.bottomButton.btnContinue.setCardBackgroundColor(resources.getColor(R.color.inactive_orange, null))
-        setupSpinner()
         initListener()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupDropDown()
     }
 
     private fun initListener() {
@@ -83,6 +92,11 @@ class RegisterBusinessFragment : Fragment() {
         }
         binding.employeeNumber.setOnClickListener {
             openEmployeeBottomSheet()
+        }
+
+        binding.internationalActivity.customSpinner.setOnItemClickListener { parent, _, position, _ ->
+            val selectedItem = parent.getItemAtPosition(position) as String
+            binding.internationalCountries.root.setVisibility(selectedItem == "Yes")
         }
     }
 
@@ -123,46 +137,13 @@ class RegisterBusinessFragment : Fragment() {
     }
 
 
-    private fun setupSpinner() {
-        val items = listOf("Select One", "Yes", "No")
+    private fun setupDropDown() {
+        val options = resources.getStringArray(R.array.options)
+        val adapter = CustomAdapter(requireContext(), options)
+        val dropDown = binding.internationalActivity.customSpinner
+        dropDown.dropDownVerticalOffset = 25
+        dropDown.setDropDownBackgroundDrawable(ResourcesCompat.getDrawable(resources, R.drawable.bg_spinner, null))
+        dropDown.setAdapter(adapter)
 
-        val adapter = object : ArrayAdapter<String>(requireContext(), R.layout.drop_down_item, items) {
-            override fun isEnabled(position: Int): Boolean {
-                return position != 0
-            }
-
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getDropDownView(position, convertView, parent)
-                val textView = view as MaterialTextView
-
-                if (position == 0) {
-                    textView.setTextColor(resources.getColor(R.color.light_grey, null))
-                } else {
-                    textView.setTextColor(resources.getColor(R.color.black, null))
-                }
-
-                return view
-            }
-        }
-
-        // Set the adapter to the Spinner
-        binding.internationalActivity.dropdownMenu.customSpinner.adapter = adapter
-
-        // Set a listener to handle item selection
-        binding.internationalActivity.dropdownMenu.customSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                if (position != 0) {
-                    (view as MaterialTextView).setTextColor(resources.getColor(R.color.black, null))
-                    if(position == 1){
-                        binding.internationalCountries.root.visibility = View.VISIBLE
-                    }else{
-                        binding.internationalCountries.root.visibility = View.GONE
-                    }
-                }
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Handle no selection if needed
-            }
-        }
     }
 }

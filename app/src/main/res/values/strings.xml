@@ -3,4 +3,6 @@
     <string name="cancle">Cancle</string>
     <string name="cancel">Cancel</string>
     <string name="search_employee_number">Search Employee Number</string>
+    <string name="international_activity">International activity</string>
+    <string name="select_one">Select One</string>
 </resources>

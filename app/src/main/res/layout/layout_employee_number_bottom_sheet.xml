@@ -15,6 +15,7 @@
         app:cardCornerRadius="@dimen/_60sdp"
         app:cardBackgroundColor="@color/ash"
         android:layout_marginEnd="@dimen/_9sdp"
+        app:cardElevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_cancel">

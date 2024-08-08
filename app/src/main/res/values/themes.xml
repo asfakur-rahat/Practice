@@ -91,4 +91,18 @@
         <item name="boxStrokeWidthFocused">0dp</item>
     </style>
 
+    <style name="NoUnderlineDropDown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="backgroundColor">@color/ash</item>
+        <item name="boxStrokeColor">@android:color/transparent</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintTextAppearance">@style/inter_regular_14</item>
+        <item name="hintTextColor">@color/light_grey</item>
+        <item name="android:textColorHint">@color/light_grey</item>
+        <item name="endIconTint">@color/light_grey</item>
+    </style>
+
+
+
 </resources>
