@@ -55,19 +55,19 @@ object DemoData {
     val transactionHistory = listOf(
         Transaction(
             id = 0,
-            date = "Today",
+            date = "11 August 2024",
             title = "Added to your CAD account",
             type = "in",
             icon = ic_cash_in,
-            amount = "+ 300.00",
+            amount = "300.00",
         ),
         Transaction(
             id = 1,
-            date = "Today",
+            date = "11 August 2024",
             title = "Payment to Mike",
             type = "out",
             icon = ic_cash_out,
-            amount = "- 200.00",
+            amount = "200.00",
         ),
         Transaction(
             id = 2,
@@ -75,7 +75,7 @@ object DemoData {
             title = "Added to your CAD account",
             type = "in",
             icon = ic_cash_in,
-            amount = "+ 400.00",
+            amount = "400.00",
         ),
         Transaction(
             id = 3,
@@ -83,7 +83,7 @@ object DemoData {
             title = "Payment to Jon Doe",
             type = "out",
             icon = ic_cash_out,
-            amount = "- 220.00",
+            amount = "220.00",
         ),
         Transaction(
             id = 4,
@@ -91,7 +91,7 @@ object DemoData {
             title = "Added to your CAD account",
             type = "in",
             icon = ic_cash_in,
-            amount = "+ 500.00",
+            amount = "500.00",
         ),
         Transaction(
             id = 5,
@@ -99,21 +99,21 @@ object DemoData {
             title = "Payment to Mike",
             type = "out",
             icon = ic_cash_out,
-            amount = "- 300.00",
+            amount = "300.00",
         ),
     )
 
     val employeeNum = listOf(
-        EmployeeNumber("1-100", 1, 100),
-        EmployeeNumber("101-200", 101, 200),
-        EmployeeNumber("201-300", 201, 300),
-        EmployeeNumber("301-400", 301, 400),
-        EmployeeNumber("401-500", 401, 500),
-        EmployeeNumber("501-600", 501, 600),
-        EmployeeNumber("601-700", 601, 700),
-        EmployeeNumber("701-800", 701, 800),
-        EmployeeNumber("801-900", 801, 900),
-        EmployeeNumber("901-999", 901, 999),
-        EmployeeNumber("1000+", 1000, Int.MAX_VALUE)
+        EmployeeNumber("1-100"),
+        EmployeeNumber("101-200"),
+        EmployeeNumber("201-300"),
+        EmployeeNumber("301-400"),
+        EmployeeNumber("401-500"),
+        EmployeeNumber("501-600"),
+        EmployeeNumber("601-700"),
+        EmployeeNumber("701-800"),
+        EmployeeNumber("801-900"),
+        EmployeeNumber("901-999"),
+        EmployeeNumber("1000+")
     )
 }

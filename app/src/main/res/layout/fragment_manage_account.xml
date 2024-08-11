@@ -3,15 +3,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.transaction.account.ManageAccountFragment">
 
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ll_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/coming_soon"
-        android:textAlignment="center"
-        android:gravity="center"
-        style="@style/inter_regular_17"/>
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/enter_title"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".3">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_title"
+            style="@style/inter_regular_14"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ll_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/enter_amount"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        app:layout_constraintTop_toBottomOf="@id/ll_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_amount"
+            style="@style/inter_regular_14"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ll_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/in_out"
+        app:helperTextEnabled="true"
+        app:helperText="only enter in or out"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        app:layout_constraintTop_toBottomOf="@id/ll_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_type"
+            style="@style/inter_regular_14"
+            android:inputType="text"
+            android:maxLength="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/layout_bottom_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

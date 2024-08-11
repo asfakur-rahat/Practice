@@ -13,8 +13,7 @@ import com.ar.practice.data.model.Country
 import com.ar.practice.databinding.ItemCountryBinding
 
 class CountryListAdapter(
-    private val onAdd: (Country) -> Unit,
-    private val onRemove: (Country) -> Unit
+    private val onAdd: (Country) -> Unit
 ): ListAdapter<Country, CountryListAdapter.CountryViewHolder>(DiffChecker) {
 
     companion object {
@@ -28,7 +27,6 @@ class CountryListAdapter(
     class CountryViewHolder(
         private val binding: ItemCountryBinding,
         private val onAdd: (Country) -> Unit,
-        private val onRemove: (Country) -> Unit
     ): ViewHolder(binding.root){
         @SuppressLint("ResourceAsColor")
         fun bind(country: Country){
@@ -37,9 +35,6 @@ class CountryListAdapter(
             binding.countryName.text = country.name
             if (country.isSelected){
                 binding.isSelected.visibility = View.VISIBLE
-                binding.root.setOnClickListener {
-                    onRemove(country)
-                }
             }else{
                 binding.isSelected.visibility = View.GONE
                 binding.root.setOnClickListener {
@@ -51,7 +46,7 @@ class CountryListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val binding = ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CountryViewHolder(binding, onAdd, onRemove)
+        return CountryViewHolder(binding, onAdd)
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {

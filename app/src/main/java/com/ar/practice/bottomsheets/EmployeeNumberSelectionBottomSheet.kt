@@ -78,10 +78,29 @@ class EmployeeNumberSelectionBottomSheet(
             //println(query.toInt())
             if(query.isNotEmpty()){
                 val newList = initList.filter { range ->
-                    range.min <= query.toInt() && range.max >= query.toInt()
+                    val (min, max) = parseRange(range.range)
+                    query.toInt() in min..max
                 }
                 submitList(newList)
             }else submitList(initList)
+        }
+    }
+
+
+
+    private fun parseRange(range: String): Pair<Int, Int> {
+        return when {
+            range.endsWith("+") -> {
+                val min = range.substringBefore("+").toInt()
+                Pair(min, Int.MAX_VALUE)
+            }
+            range.contains("-") -> {
+                val parts = range.split("-")
+                val min = parts[0].toInt()
+                val max = parts[1].toInt()
+                Pair(min, max)
+            }
+            else -> Pair(-1, -1)
         }
     }
 }

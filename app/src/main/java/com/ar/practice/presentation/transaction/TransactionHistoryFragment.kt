@@ -10,10 +10,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.ar.practice.R
 import com.ar.practice.databinding.FragmentTransactionHistoryBinding
+import com.ar.practice.presentation.transaction.account.AccountListener
+import com.ar.practice.presentation.transaction.account.ManageAccountFragment
 import com.google.android.material.textview.MaterialTextView
 
 
-class TransactionHistoryFragment : Fragment() {
+class TransactionHistoryFragment : Fragment(), AccountListener {
     private var _binding: FragmentTransactionHistoryBinding? = null
     private val binding get() = _binding!!
 
@@ -68,5 +70,9 @@ class TransactionHistoryFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onSaveComplete() {
+        binding.tab.itemOne.performClick()
     }
 }

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:paddingHorizontal="@dimen/_5sdp"
         android:paddingVertical="@dimen/_2sdp"
         android:background="@drawable/bg_drop_down"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:hint="@string/international_activity"
+            android:layout_marginTop="@dimen/_3sdp"
             app:endIconDrawable="@drawable/ic_drop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,7 @@
                 style="@style/inter_medium_17"
                 android:inputType="none"
                 android:paddingVertical="@dimen/_7sdp"
+                android:paddingHorizontal="@dimen/_3sdp"
                 android:background="@android:color/transparent"
                 android:text="@string/select_one"
                 tools:ignore="LabelFor" />

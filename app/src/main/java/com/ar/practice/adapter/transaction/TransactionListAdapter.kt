@@ -1,5 +1,6 @@
 package com.ar.practice.adapter.transaction
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ar.practice.R
 import com.ar.practice.data.model.Transaction
 import com.ar.practice.databinding.ItemTransactionBinding
+import com.ar.practice.utils.beGone
+import com.ar.practice.utils.isToday
 import com.ar.practice.utils.setVisibility
 
 class TransactionListAdapter(
@@ -24,22 +27,28 @@ class TransactionListAdapter(
         private val binding: ItemTransactionBinding,
         private val onClick: () -> Unit
     ):ViewHolder(binding.root){
+        @SuppressLint("SetTextI18n")
         fun bind(item: Transaction, date: String, visibility: Boolean){
             binding.icTransactionType.setImageResource(item.icon)
             binding.tvTransactionTitle.text = item.title
-            binding.tvTransactionAmount.text = item.amount
             binding.root.setOnClickListener {
                 onClick
             }
             if (item.type == "in"){
                 binding.tvTransactionAmount.setTextColor(binding.root.context.getColor(R.color.green))
+                binding.tvTransactionAmount.text = "+ " + item.amount
             }else{
                 binding.tvTransactionAmount.setTextColor(binding.root.context.getColor(R.color.orange))
+                binding.tvTransactionAmount.text = "- " + item.amount
             }
             if(visibility){
-                binding.tvDate.text = date
+                if(isToday(date)){
+                    binding.tvDate.text = "Today"
+                }else{
+                    binding.tvDate.text = date
+                }
             }else{
-                binding.tvDate.setVisibility(visibility)
+                binding.tvDate.beGone()
             }
         }
     }

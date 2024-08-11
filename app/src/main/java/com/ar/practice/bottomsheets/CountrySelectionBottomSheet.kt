@@ -74,8 +74,6 @@ class CountrySelectionBottomSheet(
             setRecyclerView(newList)
             selectedCountry.add(it)
             upDateSelected(selectedCountry)
-        }, onRemove =  {
-
         })
         setRecyclerView(countryList)
     }
