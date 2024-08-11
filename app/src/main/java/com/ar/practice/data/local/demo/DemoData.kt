@@ -3,6 +3,7 @@ package com.ar.practice.data.local.demo
 import com.ar.practice.R
 import com.ar.practice.R.drawable.*
 import com.ar.practice.data.model.Country
+import com.ar.practice.data.model.EmployeeNumber
 import com.ar.practice.data.model.Transaction
 
 object DemoData {
@@ -45,24 +46,6 @@ object DemoData {
         ),
         Country(
             7,
-            ic_flag_usa,
-            "United States of America",
-            false
-        ),
-        Country(
-            8,
-            ic_flag_romanian_leu,
-            "Romanian Leu",
-            false
-        ),
-        Country(
-            9,
-            ic_flag_uk,
-            "United Kingdom",
-            false
-        ),
-        Country(
-            10,
             ic_flag_usa,
             "United States of America",
             false
@@ -118,5 +101,19 @@ object DemoData {
             icon = ic_cash_out,
             amount = "- 300.00",
         ),
+    )
+
+    val employeeNum = listOf(
+        EmployeeNumber("1-100", 1, 100),
+        EmployeeNumber("101-200", 101, 200),
+        EmployeeNumber("201-300", 201, 300),
+        EmployeeNumber("301-400", 301, 400),
+        EmployeeNumber("401-500", 401, 500),
+        EmployeeNumber("501-600", 501, 600),
+        EmployeeNumber("601-700", 601, 700),
+        EmployeeNumber("701-800", 701, 800),
+        EmployeeNumber("801-900", 801, 900),
+        EmployeeNumber("901-999", 901, 999),
+        EmployeeNumber("1000+", 1000, Int.MAX_VALUE)
     )
 }

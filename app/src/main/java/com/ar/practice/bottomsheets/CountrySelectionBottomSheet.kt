@@ -41,7 +41,6 @@ class CountrySelectionBottomSheet(
 
     private fun initBehavior() {
         val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-
         bottomSheet?.let {
             bottomSheet.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
             val behavior = BottomSheetBehavior.from(it)
@@ -98,23 +97,24 @@ class CountrySelectionBottomSheet(
         selectedAdapter.submitList(country)
     }
 
-    private fun setRecyclerView(countrys: List<Country>) {
-        countryList = countrys
+    private fun setRecyclerView(countries: List<Country>) {
+        countryList = countries
         binding.rvSelectableItems.layoutManager = LinearLayoutManager(context)
         binding.rvSelectableItems.adapter = countryListAdapter
-        submitList(countrys)
+        submitList(countries)
     }
 
-    private fun submitList(countrys: List<Country>) {
-        countryListAdapter.submitList(countrys)
+    private fun submitList(countries: List<Country>) {
+        countryListAdapter.submitList(countries)
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
-        binding.etSearch.doAfterTextChanged {
-            val query = it.toString()
-            val newList = countryList.filter {
-                it.name.contains(query, ignoreCase = true)
+        binding.etSearch.doAfterTextChanged { text ->
+            val query = text.toString()
+            val newList = countryList.filter { country ->
+                country.name.contains(query, ignoreCase = true)
             }
             submitList(newList)
         }

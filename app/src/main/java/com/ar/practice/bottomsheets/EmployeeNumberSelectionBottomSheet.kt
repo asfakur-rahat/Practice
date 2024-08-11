@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.adapter.business.CountryListAdapter
 import com.ar.practice.adapter.business.SelectedCountryAdapter
 import com.ar.practice.adapter.employee.EmployeeNumberAdapter
+import com.ar.practice.data.local.demo.DemoData
 import com.ar.practice.data.model.Country
 import com.ar.practice.data.model.EmployeeNumber
 import com.ar.practice.databinding.LayoutEmployeeNumberBottomSheetBinding
@@ -22,20 +23,7 @@ class EmployeeNumberSelectionBottomSheet(
 
     private lateinit var binding: LayoutEmployeeNumberBottomSheetBinding
     private lateinit var adapter: EmployeeNumberAdapter
-    private val initList = mutableListOf(
-        EmployeeNumber("1-100", 1, 100),
-        EmployeeNumber("101-200", 101, 200),
-        EmployeeNumber("201-300", 201, 300),
-        EmployeeNumber("301-400", 301, 400),
-        EmployeeNumber("401-500", 401, 500),
-        EmployeeNumber("501-600", 501, 600),
-        EmployeeNumber("601-700", 601, 700),
-        EmployeeNumber("701-800", 701, 800),
-        EmployeeNumber("801-900", 801, 900),
-        EmployeeNumber("901-999", 901, 999),
-        EmployeeNumber("1000+", 1000, Int.MAX_VALUE),
-
-    )
+    private val initList = DemoData.employeeNum
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

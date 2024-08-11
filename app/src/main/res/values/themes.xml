@@ -74,6 +74,13 @@
         <item name="android:fontWeight">500</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="inter_medium_15">
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     
     
     <style name="customDropdown" parent="Widget.AppCompat.Spinner">

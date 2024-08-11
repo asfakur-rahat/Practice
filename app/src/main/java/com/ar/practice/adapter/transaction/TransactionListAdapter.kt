@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ar.practice.R
 import com.ar.practice.data.model.Transaction
 import com.ar.practice.databinding.ItemTransactionBinding
+import com.ar.practice.utils.setVisibility
 
 class TransactionListAdapter(
     private val onClick: () -> Unit
@@ -23,7 +24,7 @@ class TransactionListAdapter(
         private val binding: ItemTransactionBinding,
         private val onClick: () -> Unit
     ):ViewHolder(binding.root){
-        fun bind(item: Transaction){
+        fun bind(item: Transaction, date: String, visibility: Boolean){
             binding.icTransactionType.setImageResource(item.icon)
             binding.tvTransactionTitle.text = item.title
             binding.tvTransactionAmount.text = item.amount
@@ -35,6 +36,11 @@ class TransactionListAdapter(
             }else{
                 binding.tvTransactionAmount.setTextColor(binding.root.context.getColor(R.color.orange))
             }
+            if(visibility){
+                binding.tvDate.text = date
+            }else{
+                binding.tvDate.setVisibility(visibility)
+            }
         }
     }
 
@@ -42,9 +48,16 @@ class TransactionListAdapter(
         val binding = ItemTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding, onClick)
     }
+
+    private var date = ""
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val item = getItem(position)
-        println(currentList.size)
-        holder.bind(item)
+        if(date!=item.date) {
+            date = item.date
+            holder.bind(item, date, true)
+        }
+        else{
+            holder.bind(item, date, false)
+        }
     }
 }

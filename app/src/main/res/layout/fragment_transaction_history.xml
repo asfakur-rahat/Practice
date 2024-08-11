@@ -10,7 +10,7 @@
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_99sdp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="@dimen/_13sdp"
         layout="@layout/layout_tab"/>
@@ -20,7 +20,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         app:defaultNavHost="false"
         app:navGraph="@navigation/transaction_nav"
         app:layout_constraintStart_toStartOf="parent"

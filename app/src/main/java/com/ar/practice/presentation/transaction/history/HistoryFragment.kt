@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.R
 import com.ar.practice.R.drawable.ic_cash_out
-import com.ar.practice.adapter.transaction.TransactionSectionAdapter
+import com.ar.practice.adapter.transaction.TransactionListAdapter
 import com.ar.practice.data.local.demo.DemoData
 import com.ar.practice.databinding.FragmentHistoryBinding
 
@@ -17,7 +17,7 @@ class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: TransactionSectionAdapter
+    private lateinit var adapter: TransactionListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun initView() {
-        adapter = TransactionSectionAdapter {
+        adapter = TransactionListAdapter {
 
         }
         binding.rvTransactionHistory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

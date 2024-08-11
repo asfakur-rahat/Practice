@@ -1,22 +1,17 @@
 package com.ar.practice.presentation.register_business
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.PopupWindow
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ar.practice.R
-import com.ar.practice.adapter.business.SelectedCountryAdapter
+import com.ar.practice.adapter.business.SelectedCountriesAdapter
 import com.ar.practice.bottomsheets.CountrySelectionBottomSheet
 import com.ar.practice.bottomsheets.EmployeeNumberSelectionBottomSheet
 import com.ar.practice.data.local.demo.DemoData
@@ -24,14 +19,12 @@ import com.ar.practice.data.model.Country
 import com.ar.practice.databinding.FragmentRegisterBusinessBinding
 import com.ar.practice.utils.custom_ui.CustomAdapter
 import com.ar.practice.utils.setVisibility
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.textview.MaterialTextView
 
 class RegisterBusinessFragment : Fragment() {
 
     private val viewModel: RegisterBusinessViewModel by viewModels()
     private lateinit var binding: FragmentRegisterBusinessBinding
-    private lateinit var adapter: SelectedCountryAdapter
+    private lateinit var adapter: SelectedCountriesAdapter
 
     private var allCountry = DemoData.countries.toMutableList()
     private var selectedCountryList = mutableListOf<Country>()
@@ -51,7 +44,7 @@ class RegisterBusinessFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = SelectedCountryAdapter {
+        adapter = SelectedCountriesAdapter {
             val newList = allCountry
             newList[it.id- 1] = Country(it.id, it.flag,it.name,isSelected = false)
             selectedCountryList.remove(it)
