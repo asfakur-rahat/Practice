@@ -22,6 +22,18 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: TransactionListAdapter
     private lateinit var sharedPreferences: SharedPreferences
+    private var listener: HistoryListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = (parentFragment?.parentFragment as? HistoryListener) ?: throw IllegalArgumentException("Outer fragment must implement HistoryListener")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initItems()
@@ -45,9 +57,10 @@ class HistoryFragment : Fragment() {
     }
 
     private fun initView() {
-        adapter = TransactionListAdapter {
-
-        }
+        adapter = TransactionListAdapter (onClick = {
+            //println("onClick in fragment")
+            listener?.onItemClick()
+        })
         binding.rvTransactionHistory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvTransactionHistory.adapter = adapter
         adapter.submitList(sharedPreferences.getTransactionList("history"))

@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.ar.practice.R
 import com.ar.practice.data.model.Transaction
 import com.ar.practice.databinding.FragmentManageAccountBinding
-import com.ar.practice.utils.formatDate
+import com.ar.practice.utils.*
 import com.ar.practice.utils.getTransactionList
 import com.ar.practice.utils.putTransactionList
 import com.ar.practice.utils.sortTransactionsByDateDescending

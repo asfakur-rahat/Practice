@@ -2,6 +2,7 @@ package com.ar.practice.data.local.demo
 
 import com.ar.practice.R
 import com.ar.practice.R.drawable.*
+import com.ar.practice.data.model.CardAction
 import com.ar.practice.data.model.Country
 import com.ar.practice.data.model.EmployeeNumber
 import com.ar.practice.data.model.Transaction
@@ -115,5 +116,33 @@ object DemoData {
         EmployeeNumber("801-900"),
         EmployeeNumber("901-999"),
         EmployeeNumber("1000+")
+    )
+
+    val cardActions = listOf(
+        CardAction(
+            icon = ic_action_payment_method,
+            title = "Manage payment method",
+            action = "manage_payment_method"
+        ),
+        CardAction(
+            icon = ic_action_pin,
+            title = "Show PIN",
+            action = "show_pin"
+        ),
+        CardAction(
+            icon = ic_action_pin,
+            title = "Unlock PIN",
+            action = "unlock_pin"
+        ),
+        CardAction(
+            icon = ic_action_nickname,
+            title = "Card nickname",
+            action = "card_nickname"
+        ),
+        CardAction(
+            icon = ic_action_limit,
+            title = "Card usage limit",
+            action = "card_usage_limit"
+        )
     )
 }

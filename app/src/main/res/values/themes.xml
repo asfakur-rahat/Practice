@@ -33,6 +33,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="ubuntu_semi_18">
+        <item name="android:fontFamily">@font/ubuntu_bold</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="ubuntu_regular_16">
         <item name="android:fontFamily">@font/ubuntu</item>
         <item name="android:textSize">@dimen/_12ssp</item>
@@ -72,6 +79,20 @@
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textSize">@dimen/_13ssp</item>
         <item name="android:fontWeight">500</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="inter_semi_18">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="inter_semi_16">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:fontWeight">600</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

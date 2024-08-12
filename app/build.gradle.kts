@@ -62,4 +62,7 @@ dependencies {
 
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
+
+    implementation(libs.me.circleindicator)
+    implementation(libs.whynotimagecarousel)
 }

@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.ar.practice.R
 import com.ar.practice.databinding.FragmentTransactionHistoryBinding
 import com.ar.practice.presentation.transaction.account.AccountListener
 import com.ar.practice.presentation.transaction.account.ManageAccountFragment
+import com.ar.practice.presentation.transaction.history.HistoryFragment
+import com.ar.practice.presentation.transaction.history.HistoryListener
 import com.google.android.material.textview.MaterialTextView
 
 
-class TransactionHistoryFragment : Fragment(), AccountListener {
+class TransactionHistoryFragment : Fragment(), AccountListener, HistoryListener {
     private var _binding: FragmentTransactionHistoryBinding? = null
     private val binding get() = _binding!!
 
@@ -74,5 +77,9 @@ class TransactionHistoryFragment : Fragment(), AccountListener {
 
     override fun onSaveComplete() {
         binding.tab.itemOne.performClick()
+    }
+
+    override fun onItemClick() {
+        findNavController().navigate(R.id.action_transactionHistoryFragment_to_cardsFragment)
     }
 }

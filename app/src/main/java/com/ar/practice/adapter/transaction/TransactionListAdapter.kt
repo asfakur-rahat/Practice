@@ -32,7 +32,8 @@ class TransactionListAdapter(
             binding.icTransactionType.setImageResource(item.icon)
             binding.tvTransactionTitle.text = item.title
             binding.root.setOnClickListener {
-                onClick
+                //println("onClick")
+                onClick()
             }
             if (item.type == "in"){
                 binding.tvTransactionAmount.setTextColor(binding.root.context.getColor(R.color.green))
