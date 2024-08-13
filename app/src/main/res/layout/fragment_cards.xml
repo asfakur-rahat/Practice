@@ -35,14 +35,12 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_balance"/>
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_195sdp"
-                android:clipToPadding="false"
-
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_210sdp"
                 app:autoPlay="false"
                 app:carouselGravity="CENTER"
                 app:carouselType="SHOWCASE"
-                app:infiniteCarousel="false"
+                app:infiniteCarousel="true"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +48,11 @@
                 android:layout_marginTop="@dimen/_114sdp"
 
                 app:scaleOnScroll="true"
-                app:scalingFactor="0.25"
+                app:scalingFactor=".10"
 
                 app:showBottomShadow="false"
                 app:showCaption="false"
-                app:showIndicator="false"
+                app:showIndicator="true"
                 app:showNavigationButtons="false"
                 app:showTopShadow="false"
                 app:topShadowHeight="0dp"

@@ -1,13 +1,17 @@
 package com.ar.practice.presentation.card
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.ar.practice.R
 import com.ar.practice.adapter.card.CardActionAdapter
@@ -17,7 +21,9 @@ import com.ar.practice.databinding.LayoutCardSliderBinding
 import com.ar.practice.utils.beGone
 import com.ar.practice.utils.beVisible
 import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener
+import org.imaginativeworld.whynotimagecarousel.listener.CarouselOnScrollListener
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 class CardsFragment : Fragment() {
 
@@ -54,7 +60,14 @@ class CardsFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun showPopup() {
-        binding.popUp.root.beVisible()
+        binding.popUp.root.apply {
+            alpha = 0f
+            beVisible()
+            animate()
+                .alpha(1f)
+                .setDuration(300)
+                .setListener(null)
+        }
         binding.nestedScrollView.setOnTouchListener{ _, _ ->
             true
         }
@@ -65,7 +78,14 @@ class CardsFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun hidePopup() {
-        binding.popUp.root.beGone()
+        binding.popUp.root.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .setListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator) {
+                    binding.popUp.root.beGone()
+                }
+            })
         binding.nestedScrollView.setOnTouchListener(null)
         binding.rvCardActions.setOnTouchListener(null)
     }
@@ -127,8 +147,14 @@ class CardsFragment : Fragment() {
                 position: Int
             ) {
                 val currentBinding = binding as LayoutCardSliderBinding
-                currentBinding.ivCards.setImageResource(item.imageDrawable!!)
+                currentBinding.ivCards.apply {
+                    setImage(item)
+                }
                 currentBinding.tvCardNumber.text = item.caption
+
+                currentBinding.root.setOnClickListener {
+                    Toast.makeText(requireContext(), "Card Clicked + ${item.caption}", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -144,6 +170,13 @@ class CardsFragment : Fragment() {
             CarouselItem(
                 imageDrawable = R.drawable.ic_cards,
                 caption = "Expense Card **** 7890"
+            )
+        )
+
+        list.add(
+            CarouselItem(
+                imageDrawable = R.drawable.ic_cards,
+                caption = "Expense Card **** 3567"
             )
         )
 
