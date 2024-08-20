@@ -28,4 +28,14 @@
         android:name="com.ar.practice.presentation.card.CardsFragment"
         android:label="fragment_cards"
         tools:layout="@layout/fragment_cards" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.ar.practice.presentation.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.ar.practice.presentation.story.StoryFragment"
+        android:label="fragment_story"
+        tools:layout="@layout/fragment_story" />
 </navigation>
